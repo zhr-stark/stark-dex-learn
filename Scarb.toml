@@ -1,11 +1,10 @@
 [package]
 name = "starkdex"
 version = "0.1.0"
-edition = "2025_12"
+edition = "2024_07"
 
-# Указываем, что это контракт Starknet
 [[target.starknet-contract]]
 
 [dependencies]
-starknet = "2.18.0" 
-openzeppelin = ">=0.15.0" # подтянет официальные контракты и интерфейсы токенов
+starknet = "2.18.0"
+openzeppelin = ">=0.15.0"
