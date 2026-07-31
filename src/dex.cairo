@@ -1,6 +1,6 @@
 
-use starknet::storage::{Map, StoragePathEntry, StoragePointerReadAccess,
-StoragePointerWriteAccess, Vec, VecTrait, MutableVecTrait,};
+use starknet::storage::{StoragePointerReadAccess,
+StoragePointerWriteAccess, };
 use starknet::{ContractAddress, get_caller_address, get_contract_address};
 
 #[starknet::interface]
@@ -22,10 +22,8 @@ trait IERC20<TState> {
     use super::{ContractAddress, get_caller_address, get_contract_address};
     use super::IERC20Dispatcher;
     use super::IERC20DispatcherTrait;
-    use super::{Map, StoragePointerReadAccess, StoragePointerWriteAccess,
-    StoragePathEntry, Vec, VecTrait, MutableVecTrait};
+    use super::{StoragePointerReadAccess, StoragePointerWriteAccess};
     use starknet::event::EventEmitter;
-    use core::num::traits::Zero;
  #[storage]
     struct Storage {
         token_x: ContractAddress,
@@ -87,7 +85,6 @@ trait IERC20<TState> {
             assert(x > 0, 'amount must be bigger than zero');
             assert(y > 0, 'amount must be bigger than zero');
             let caller = get_caller_address();
-            assert(self.owner.read() == caller, 'only caller can call this fn');
             let token_x = IERC20Dispatcher { contract_address: self.token_x.read() };
             token_x.transfer_from(caller, get_contract_address(), x);
             let token_y = IERC20Dispatcher { contract_address: self.token_y.read() };
