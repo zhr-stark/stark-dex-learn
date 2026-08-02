@@ -1,7 +1,7 @@
 use starknet::{ContractAddress};
 
 #[starknet::interface]
-trait IMockERC20<TState> {
+pub trait IMockERC20<TState> {
    fn mint(ref self: TState, to: ContractAddress, amount: u256);
    fn approve(ref self: TState, spender: ContractAddress, amount: u256);
    fn balance_of(self: @TState, account: ContractAddress) -> u256;

@@ -1,10 +1,9 @@
 
-use starknet::storage::{StoragePointerReadAccess,
-StoragePointerWriteAccess, };
+use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess, };
 use starknet::{ContractAddress, get_caller_address, get_contract_address};
 
 #[starknet::interface]
-trait IDex<TState>{
+pub trait IDex<TState>{
     fn add_liquidity(ref self: TState, x: u256, y: u256);
     fn get_reserves(self: @TState) -> (u256, u256);
     fn swap_x_to_y(ref self: TState, amount_in: u256);

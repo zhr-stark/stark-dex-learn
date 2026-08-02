@@ -1,7 +1,10 @@
 /// Interface representing `HelloContract`.
 /// This interface allows modification and retrieval of the contract balance.
-mod dex;
-mod mock_erc20;
+pub mod dex;
+pub mod mock_erc20;
+#[cfg(test)]
+pub mod tests;
+
 #[starknet::interface]
 pub trait IHelloStarknet<TContractState> {
     /// Increase contract balance.

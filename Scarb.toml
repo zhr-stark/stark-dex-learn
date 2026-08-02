@@ -8,3 +8,4 @@ edition = "2024_07"
 [dependencies]
 starknet = "2.18.0"
 openzeppelin = ">=0.15.0"
+snforge_std = "0.62.1"
