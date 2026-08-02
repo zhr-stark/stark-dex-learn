@@ -1,6 +1,7 @@
 #[cfg(test)]
 mod tests {
-    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, start_cheat_caller_address, stop_cheat_caller_address};
+    use starknet::SyscallResultTrait;
+use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, start_cheat_caller_address, stop_cheat_caller_address};
     use starknet::ContractAddress;
     use starkdex::mock_erc20::IMockERC20Dispatcher;
     use starkdex::mock_erc20::IMockERC20DispatcherTrait;
@@ -12,23 +13,23 @@ mod tests {
 
    fn deploy_mock_erc20() -> IMockERC20Dispatcher {
     
-        let contract = declare("MockERC20").unwrap().contract_class();
+        let contract = declare("MockERC20").unwrap_syscall().contract_class();
         
         let constructor_args = array![];
         
-        let (address, _) = contract.deploy(@constructor_args).unwrap();
+        let (address, _) = contract.deploy(@constructor_args).unwrap_syscall();
         IMockERC20Dispatcher { contract_address: address }
     }
 
     fn deploy_dex(token_x: ContractAddress, token_y: ContractAddress) -> IDexDispatcher {
         // find contract by name
-        let contract = declare("DEX").unwrap().contract_class();
+        let contract = declare("DEX").unwrap_syscall().contract_class();
         // arguments for constructor
         let mut constructor_args = array![];
         
         token_x.serialize(ref constructor_args);
         token_y.serialize(ref constructor_args);
-        let (address, _) = contract.deploy(@constructor_args).unwrap();
+        let (address, _) = contract.deploy(@constructor_args).unwrap_syscall();
         IDexDispatcher { contract_address: address }
     }
 
