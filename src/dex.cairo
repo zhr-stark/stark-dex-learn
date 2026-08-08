@@ -115,6 +115,15 @@ trait IERC20<TState> {
         });
 
         }
+        //sepolia data
+     // my address 0x05dfb8da3a3da6571cf01d4785cbd919716820a44f735c894a55f13f88dd68da
+        // token_x 0x02669a305ed5a2e797f958de0526c334aec3930ec99adc25d3e4dfae64c28e17
+        // token_y 0x016b4647deb32df6715878350a47a079430e140193589f939f3b5a282a4f269e
+        // dex -   0x079e6afe317b82119457e5ae0bea7bbfcb1d85d853a33da192c9c4809cb9bbf1 
+
+        
+        
+
 
         fn swap_y_to_x(ref self: ContractState, amount_in: u256){
             assert(amount_in > 0, 'amount_in musnt be zero');

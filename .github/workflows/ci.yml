@@ -1,0 +1,36 @@
+# CI workflow name displayed in the GitHub Actions UI
+name: Starknet DEX CI
+
+# Triggers: when to run the automated pipeline
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  # Job configuration
+  build-and-test:
+    # Run the process on an Ubuntu Linux virtual machine
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository source code
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Scarb (Cairo compiler and package manager)
+      - name: Setup Scarb
+        uses: software-mansion/setup-scarb@v1
+
+      # Step 3: Set up Starknet Foundry (includes snforge for testing)
+      - name: Setup Starknet Foundry
+        uses: software-mansion/setup-starknet-foundry@v1
+
+      # Step 4: Ensure the contracts compile successfully
+      - name: Compile contracts
+        run: scarb build
+
+      # Step 5: Run all snforge tests for DEX and MockERC20 contracts
+      - name: Run snforge tests
+        run: snforge test
